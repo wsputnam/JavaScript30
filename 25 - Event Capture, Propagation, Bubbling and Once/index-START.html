@@ -39,6 +39,25 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
+
+  function logText(e) {
+    e.stopPropogation(); // stop bubbling events up
+    console.log(this.classList.value)
+  }
+
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false, // default bubbling behavior
+    once: true // will listen for a click and unbind itself (same as remove event listener)
+  }));
+
+  button.addEventListener('click', () => {
+    console.log('click!!');
+  }, {
+    once: true // more unbinding, can only click button once
+  });
 
 </script>
 </body>
